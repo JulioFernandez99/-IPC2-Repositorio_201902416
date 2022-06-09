@@ -45,9 +45,14 @@ def menu():
 
        if carritosCreados==False:
         numeroCarritos=int(input("Ingrese la cantidad de carritos: "))
-        carrito.crearCarritos(numeroCarritos)
-        carritosCreados=True
-        menu()
+        
+        if(numeroCarritos<0):
+            print("Numero invalido de carritos")
+            menu()
+        else:
+            carrito.crearCarritos(numeroCarritos)
+            carritosCreados=True
+            menu()
 
     elif(op=="2"):
         if (carrito.cabeza!=None):

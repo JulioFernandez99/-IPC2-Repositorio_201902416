@@ -1,0 +1,19 @@
+digraph G {
+charset="latin1"
+node [shape=square,style="rounded"];
+rankdir="LR";
+"catalogo"->"cd1"
+"cd1"->"Un verano sin ti"
+"Un verano sin ti"->"Artist:bad bunny"
+"Un verano sin ti"->"Country:uk"
+"Un verano sin ti"->"Company:podor"
+"Un verano sin ti"->"Price:10.90"
+"Un verano sin ti"->"Year:2022"
+"catalogo"->"cd2"
+"cd2"->"easc"
+"easc"->"Artist:e"
+"easc"->"Country:e"
+"easc"->"Company:e"
+"easc"->"Price:e"
+"easc"->"Year:e"
+}

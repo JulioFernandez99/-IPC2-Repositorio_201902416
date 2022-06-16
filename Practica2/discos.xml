@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<catalog>
+
+    <cd>
+        <title>Un verano sin ti</title>
+        <artist>bad bunny</artist>
+        <country>uk</country>
+        <company>podor</company>
+        <price>10.90</price>
+        <year>2022</year>
+    </cd>
+
+
+    <cd>
+        <title>"easc"</title>
+        <artist>e</artist>
+        <country>e</country>
+        <company>e</company>
+        <price>e</price>
+        <year>e</year>
+    </cd>
+
+
+</catalog>

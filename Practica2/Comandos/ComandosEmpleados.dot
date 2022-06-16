@@ -1,0 +1,37 @@
+digraph G {
+charset="latin1"
+node [shape=square,style="rounded"];
+rankdir="LR";
+"empresa"->"Contabilidad"
+"Contabilidad" [style=filled,color=Red,];
+"Contabilidad" [shape=square,style="rounded"];
+"Contabilidad"->"empleado1"
+"empleado1"->"Nombre:Daniel Pérez"
+"empleado1"->"Puesto:Contador"
+"empleado1"->"Salario:2000.00"
+"Contabilidad" [style=filled,color=Red,];
+"Contabilidad" [shape=square,style="rounded"];
+"Contabilidad"->"empleado2"
+"empleado2"->"Nombre:Julio Fernández"
+"empleado2"->"Puesto:Ingerniero"
+"empleado2"->"Salario:90000.00"
+"Contabilidad" [style=filled,color=Red,];
+"Contabilidad" [shape=square,style="rounded"];
+"Contabilidad"->"empleado3"
+"empleado3"->"Nombre:Sandra Fernandez"
+"empleado3"->"Puesto:Contador"
+"empleado3"->"Salario:10000.00"
+"empresa"->"RRHH"
+"RRHH" [style=filled,color=Red,];
+"RRHH" [shape=square,style="rounded"];
+"RRHH"->"empleado4"
+"empleado4"->"Nombre:Rita"
+"empleado4"->"Puesto:Abodaga y notaria"
+"empleado4"->"Salario:100000.00"
+"RRHH" [style=filled,color=Red,];
+"RRHH" [shape=square,style="rounded"];
+"RRHH"->"empleado5"
+"empleado5"->"Nombre:Antonio Toc"
+"empleado5"->"Puesto:Gerente"
+"empleado5"->"Salario:300000.00"
+}

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<empresa>
+    <departamento departamento="Contabilidad">
+
+        <empleado id="1">
+            <nombre>Daniel Pérez</nombre>
+            <puesto>Contador</puesto>
+            <salario>2000.00</salario>
+        </empleado>
+
+
+        <empleado id="2">
+            <nombre>Julio Fernández</nombre>
+            <puesto>Ingerniero</puesto>
+            <salario>90000.00</salario>
+        </empleado>
+
+
+        <empleado id="3">
+            <nombre>Sandra Fernandez</nombre>
+            <puesto>Contador</puesto>
+            <salario>10000.00</salario>
+        </empleado>
+    </departamento>
+
+    <departamento departamento="RRHH">
+        <empleado id="4">
+            <nombre>Rita</nombre>
+            <puesto>Abodaga y notaria</puesto>
+            <salario>100000.00</salario>
+        </empleado>
+
+
+        <empleado id="6">
+            <nombre>Antonio Toc</nombre>
+            <puesto>Gerente</puesto>
+            <salario>300000.00</salario>
+        </empleado>
+
+        </departamento>
+</empresa>

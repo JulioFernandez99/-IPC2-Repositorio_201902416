@@ -66,17 +66,24 @@ class OpcionesEmpleados:
         contador = 0
         manf = open('Comandos/ComandosEmpleados.dot', 'w')
         comando = 'digraph G {\ncharset="latin1"\nnode [shape=square,style="rounded"];\nrankdir="LR";\n'
+
         for departamento in raizEmpleados:
-            comando += f'"empresa"->"{departamento.attrib["departamento"]}"\n'
+            comando += f'empresa->"{departamento.attrib["departamento"]}"\n'
+
+            # print(f"Departamento de {departamento.attrib['departamento']}")
             for empleado in departamento:
                 contador += 1
-                comando += f'"{departamento.attrib["departamento"]}" [style=filled,color=Red,];\n'
-                comando += f'"{departamento.attrib["departamento"]}" [shape=square,style="rounded"];\n'
-                comando += f'"{departamento.attrib["departamento"]}"->"empleado{contador}"\n'
-                comando += f'"empleado{contador}"->"Nombre:{empleado.findall("nombre")[0].text}"\n'
-                comando += f'"empleado{contador}"->"Puesto:{empleado.findall("puesto")[0].text}"\n'
-                comando += f'"empleado{contador}"->"Salario:{empleado.findall("salario")[0].text}"\n'
+                comando += f'nodeNombre{contador}[label="Nombre:{empleado.findall("nombre")[0].text}"]\n'
+                comando += f'nodePuesto{contador}[label="Puesto{empleado.findall("puesto")[0].text}"]\n'
+                comando += f'nodeSalario{contador}[label="{empleado.findall("salario")[0].text}"]\n'
+
+                comando += f'"{departamento.attrib["departamento"]}"->Empleado{contador}\n'
+                comando += f'"Empleado{contador}"->nodeNombre{contador}\n'
+                comando += f'"Empleado{contador}"->nodePuesto{contador}\n'
+                comando += f'"Empleado{contador}"->nodeSalario{contador}\n'
+
         comando += "}"
+
         #print(comando)
         manf.write(comando)
         manf.close()

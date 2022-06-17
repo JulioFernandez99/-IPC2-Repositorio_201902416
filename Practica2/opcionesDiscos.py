@@ -78,17 +78,52 @@ class OpcionesDiscos:
         manf = open('Comandos/ComandosDiscos.dot', 'w')
         comando = 'digraph G {\ncharset="latin1"\nnode [shape=square,style="rounded"];\nrankdir="LR";\n'
         for cd in raizDiscos:
-            title = cd.findall("title")[0].text
-            nuevoTitle = title.strip('"')
-
             contador += 1
+            title = cd.findall("title")[0].text
+            artist = cd.findall("artist")[0].text
+            country = cd.findall("country")[0].text
+            company = cd.findall("company")[0].text
+            price = cd.findall("price")[0].text
+            year = cd.findall("year")[0].text
+            if (title[0] == '"'):
+                nuevoTitle = title.strip('"')
+                comando += f'nodeTitulo{contador}[label=" \\"{format(nuevoTitle)}\\""]\n'
+            else:
+                comando += f'nodeTitulo{contador}[label="{cd.findall("title")[0].text}"]\n'
+            if (artist[0] == '"'):
+                nuevoartist = artist.strip('"')
+                comando += f'nodeArtista{contador}[label=" \\"{format(nuevoartist)}\\""]\n'
+            else:
+                comando += f'nodeArtista{contador}[label="{cd.findall("artist")[0].text}"]\n'
+            if (country[0] == '"'):
+                nuevocountry = country.strip('"')
+                comando += f'nodeCountry{contador}[label=" \\"{format(nuevocountry)}\\""]\n'
+            else:
+                comando += f'nodeCountry{contador}[label="{cd.findall("country")[0].text}"]\n'
+            if (company[0] == '"'):
+                nuevocompany = company.strip('"')
+                comando += f'nodeCompany{contador}[label=" \\"{format(nuevocompany)}\\""]\n'
+            else:
+                comando += f'nodeCompany{contador}[label="{cd.findall("company")[0].text}"]\n'
+            if (price[0] == '"'):
+                nuevoprice = price.strip('"')
+                comando += f'nodePrice{contador}[label=" \\"{format(nuevoprice)}\\""]\n'
+            else:
+                comando += f'nodePrice{contador}[label="{cd.findall("price")[0].text}"]\n'
+            if (year[0] == '"'):
+                nuevoyear = year.strip('"')
+                comando += f'nodeYear{contador}[label=" \\"{format(nuevoyear)}\\""]\n'
+            else:
+                comando += f'nodeYear{contador}[label="{cd.findall("year")[0].text}"]\n'
+
+            # Apuntando nodos
             comando += f'"catalogo"->"cd{contador}"\n'
-            comando += f'"cd{contador}"->"{format(nuevoTitle)}"\n'
-            comando += f'"{format(nuevoTitle)}"->"Artist:{cd.findall("artist")[0].text}"\n'
-            comando += f'"{format(nuevoTitle)}"->"Country:{cd.findall("country")[0].text}"\n'
-            comando += f'"{format(nuevoTitle)}"->"Company:{cd.findall("company")[0].text}"\n'
-            comando += f'"{format(nuevoTitle)}"->"Price:{cd.findall("price")[0].text}"\n'
-            comando += f'"{format(nuevoTitle)}"->"Year:{cd.findall("year")[0].text}"\n'
+            comando += f'cd{contador}->nodeTitulo{contador}\n'
+            comando += f'nodeTitulo{contador}->nodeArtista{contador}\n'
+            comando += f'nodeTitulo{contador}->nodeCountry{contador}\n'
+            comando += f'nodeTitulo{contador}->nodeCompany{contador}\n'
+            comando += f'nodeTitulo{contador}->nodePrice{contador}\n'
+            comando += f'nodeTitulo{contador}->nodeYear{contador}\n'
         comando += "}"
 
         #print(comando)

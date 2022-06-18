@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+<catalog>
+
+    <cd>
+        <title>Un verano sin ti</title>
+        <artist>bad bunny</artist>
+        <country>Puerto Rico</country>
+        <company>Pr Records</company>
+        <price>10.90</price>
+        <year>2022</year>
+    </cd>
+
+
+    <cd>
+        <title>Rave</title>
+        <artist>Dxrk</artist>
+        <country>USA</country>
+        <company>Moltrov</company>
+        <price>8.00</price>
+        <year>2010</year>
+    </cd>
+
+
+    <cd>
+        <title>Pass the dutchi</title>
+        <artist>Music Youth</artist>
+        <country>Pheonix</country>
+        <company>PRecods</company>
+        <price>19.90</price>
+        <year>1981</year>
+    </cd>
+
+
+    <cd>
+        <title>&quot;La purga&quot;</title>
+        <artist>Grupo 360</artist>
+        <country>&quot;Mexico DF&quot;</country>
+        <company>Mexican Records</company>
+        <price>8.90</price>
+        <year>2019</year>
+    </cd>
+
+
+    <cd>
+        <title>Ojitos lindos</title>
+        <artist>"bad bunny"</artist>
+        <country>Puerto Rico</country>
+        <company>Pr Records</company>
+        <price>10.90</price>
+        <year>2022</year>
+    </cd>
+
+
+    </catalog>

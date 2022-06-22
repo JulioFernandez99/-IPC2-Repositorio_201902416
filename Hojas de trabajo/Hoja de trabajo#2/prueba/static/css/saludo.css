@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: rgb(45, 136, 206);
+    font-family: 'Nunito', sans-serif;
+    padding: 0 20px;
+}
+
+.card-container{
+    display: flex;
+    width: auto;
+    height: auto;
+    background:  #ffffff;
+    border-radius: 2px;
+    box-shadow:1px 1px 4px 2px rgba(0, 0, 0,.5);
+}
+
+
+.descripcion{
+    background: white; 
+    position: relative;
+}
+
+.header, .descripcion{
+    padding:10px;
+    text-align: center;
+}
+
+.header img{
+    right: 50%;
+    height: 150px;
+
+}
+
+.descripcion h3{
+    margin-left: -40px;
+    margin-right: -20px;
+    padding: 40px 30px;
+    
+}
+
+.descripcion h4{
+    margin-left: -250px;
+    margin-right: -20px;
+
+    
+}
+
+.descripcion{
+    position: relative;
+}

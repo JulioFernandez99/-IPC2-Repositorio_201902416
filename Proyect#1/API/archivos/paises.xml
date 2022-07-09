@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mundo>
+    <continente name="Europa">
+
+        <pais moneda="Euro">
+            <nombre>Monaco</nombre>
+            <capital>Ciudad de monaco</capital>
+            <idioma>Frances</idioma>
+        </pais>
+
+        <pais moneda="Euro">
+            <nombre>Australia</nombre>
+            <capital>Viena</capital>
+            <idioma>Español</idioma>
+        </pais>
+    </continente>
+
+    <continente name="America">
+    
+        <pais moneda="Aquetzal">
+            <nombre>Guatemala</nombre>
+            <capital>Ciudad de guatemala</capital>
+            <idioma>Españolssss</idioma>
+        </pais>
+
+        <pais moneda="Peso">
+            <nombre>Mexico</nombre>
+            <capital>Ciudad de mexico</capital>
+            <idioma>Español</idioma>
+        </pais>
+        
+        <pais moneda="Dolar">
+            <nombre>Salvador</nombre>
+            <capital>San salvador</capital>
+            <idioma>Espa</idioma></pais>
+        
+        <pais moneda="Cordoba">
+            <nombre>Nicaragua</nombre>
+            <capital>Managua</capital>
+            <idioma>Español</idioma>
+        </pais>
+        <pais moneda="Sol"><nombre>Honduras</nombre><capital>Tegusigalpa</capital><idioma>Catalan</idioma></pais></continente>
+
+    <continente name="Asia">
+
+        <pais moneda="Euro">
+            <nombre>china</nombre>
+            <capital>Ciudad de monaco</capital>
+            <idioma>Frances</idioma>
+        </pais>
+    <pais moneda="Won"><nombre>Korea del norte</nombre><capital>Piongyan</capital><idioma>Koreano</idioma></pais></continente>
+
+</mundo>

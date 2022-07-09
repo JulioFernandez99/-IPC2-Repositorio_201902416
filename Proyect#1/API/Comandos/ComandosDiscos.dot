@@ -1,0 +1,304 @@
+digraph G {
+charset="latin1"
+node [shape=square,style="rounded"];
+rankdir="LR";
+nodeTitulo1[label="Title:hide your heart"]
+nodeArtista1[label="Artista:bonnie tyler"]
+nodeCountry1[label="Country:uk"]
+nodeCompany1[label="Company:vasr"]
+nodePrice1[label="Price:9.90"]
+nodeYear1[label="Year:1988"]
+"catalogo"->"cd1"
+cd1->nodeTitulo1
+nodeTitulo1->nodeArtista1
+nodeTitulo1->nodeCountry1
+nodeTitulo1->nodeCompany1
+nodeTitulo1->nodePrice1
+nodeTitulo1->nodeYear1
+nodeTitulo2[label="Title:greatest hits"]
+nodeArtista2[label="Artista:dolly parton"]
+nodeCountry2[label="Country:usa"]
+nodeCompany2[label="Company:rca"]
+nodePrice2[label="Price:9.90"]
+nodeYear2[label="Year:1982"]
+"catalogo"->"cd2"
+cd2->nodeTitulo2
+nodeTitulo2->nodeArtista2
+nodeTitulo2->nodeCountry2
+nodeTitulo2->nodeCompany2
+nodeTitulo2->nodePrice2
+nodeTitulo2->nodeYear2
+nodeTitulo3[label="Title:still got the blues"]
+nodeArtista3[label="Artista:abc"]
+nodeCountry3[label="Country:abc"]
+nodeCompany3[label="Company:abc"]
+nodePrice3[label="Price:12.9"]
+nodeYear3[label="Year:2022"]
+"catalogo"->"cd3"
+cd3->nodeTitulo3
+nodeTitulo3->nodeArtista3
+nodeTitulo3->nodeCountry3
+nodeTitulo3->nodeCompany3
+nodeTitulo3->nodePrice3
+nodeTitulo3->nodeYear3
+nodeTitulo4[label="Title:eros & eros"]
+nodeArtista4[label="Artista:eros ramazzotti"]
+nodeCountry4[label="Country:eu"]
+nodeCompany4[label="Company:bmg"]
+nodePrice4[label="Price:9.90"]
+nodeYear4[label="Year:1997"]
+"catalogo"->"cd4"
+cd4->nodeTitulo4
+nodeTitulo4->nodeArtista4
+nodeTitulo4->nodeCountry4
+nodeTitulo4->nodeCompany4
+nodeTitulo4->nodePrice4
+nodeTitulo4->nodeYear4
+nodeTitulo5[label="Title: \"esto tiene que salir bien\""]
+nodeArtista5[label="Artista:bee gees"]
+nodeCountry5[label="Country:uk"]
+nodeCompany5[label="Company:polydor"]
+nodePrice5[label="Price:10.90"]
+nodeYear5[label="Year:1998"]
+"catalogo"->"cd5"
+cd5->nodeTitulo5
+nodeTitulo5->nodeArtista5
+nodeTitulo5->nodeCountry5
+nodeTitulo5->nodeCompany5
+nodeTitulo5->nodePrice5
+nodeTitulo5->nodeYear5
+nodeTitulo6[label="Title:'esto tiene que salir muy bien tambien'"]
+nodeArtista6[label="Artista:dr.hook"]
+nodeCountry6[label="Country:uk"]
+nodeCompany6[label="Company:cbs"]
+nodePrice6[label="Price:8.10"]
+nodeYear6[label="Year:1973"]
+"catalogo"->"cd6"
+cd6->nodeTitulo6
+nodeTitulo6->nodeArtista6
+nodeTitulo6->nodeCountry6
+nodeTitulo6->nodeCompany6
+nodeTitulo6->nodePrice6
+nodeTitulo6->nodeYear6
+nodeTitulo7[label="Title:maggie may"]
+nodeArtista7[label="Artista:rod stewart"]
+nodeCountry7[label="Country:uk"]
+nodeCompany7[label="Company:pickwick"]
+nodePrice7[label="Price:8.50"]
+nodeYear7[label="Year:1990"]
+"catalogo"->"cd7"
+cd7->nodeTitulo7
+nodeTitulo7->nodeArtista7
+nodeTitulo7->nodeCountry7
+nodeTitulo7->nodeCompany7
+nodeTitulo7->nodePrice7
+nodeTitulo7->nodeYear7
+nodeTitulo8[label="Title:romanza"]
+nodeArtista8[label="Artista:andrea bocelli"]
+nodeCountry8[label="Country:eu"]
+nodeCompany8[label="Company:polydor"]
+nodePrice8[label="Price:10.80"]
+nodeYear8[label="Year:1996"]
+"catalogo"->"cd8"
+cd8->nodeTitulo8
+nodeTitulo8->nodeArtista8
+nodeTitulo8->nodeCountry8
+nodeTitulo8->nodeCompany8
+nodeTitulo8->nodePrice8
+nodeTitulo8->nodeYear8
+nodeTitulo9[label="Title:when a man loves a woman"]
+nodeArtista9[label="Artista:percy sledge"]
+nodeCountry9[label="Country:usa"]
+nodeCompany9[label="Company:atlantic"]
+nodePrice9[label="Price:8.70"]
+nodeYear9[label="Year:1987"]
+"catalogo"->"cd9"
+cd9->nodeTitulo9
+nodeTitulo9->nodeArtista9
+nodeTitulo9->nodeCountry9
+nodeTitulo9->nodeCompany9
+nodeTitulo9->nodePrice9
+nodeTitulo9->nodeYear9
+nodeTitulo10[label="Title:black angel"]
+nodeArtista10[label="Artista:savage rose"]
+nodeCountry10[label="Country:eu"]
+nodeCompany10[label="Company:mega"]
+nodePrice10[label="Price:10.90"]
+nodeYear10[label="Year:1995"]
+"catalogo"->"cd10"
+cd10->nodeTitulo10
+nodeTitulo10->nodeArtista10
+nodeTitulo10->nodeCountry10
+nodeTitulo10->nodeCompany10
+nodeTitulo10->nodePrice10
+nodeTitulo10->nodeYear10
+nodeTitulo11[label="Title:1999 grammy nominees"]
+nodeArtista11[label="Artista:many"]
+nodeCountry11[label="Country:usa"]
+nodeCompany11[label="Company:grammy"]
+nodePrice11[label="Price:10.30"]
+nodeYear11[label="Year:1999"]
+"catalogo"->"cd11"
+cd11->nodeTitulo11
+nodeTitulo11->nodeArtista11
+nodeTitulo11->nodeCountry11
+nodeTitulo11->nodeCompany11
+nodeTitulo11->nodePrice11
+nodeTitulo11->nodeYear11
+nodeTitulo12[label="Title:for the good times"]
+nodeArtista12[label="Artista:kenny rogers"]
+nodeCountry12[label="Country:uk"]
+nodeCompany12[label="Company:mucik master"]
+nodePrice12[label="Price:8.70"]
+nodeYear12[label="Year:1995"]
+"catalogo"->"cd12"
+cd12->nodeTitulo12
+nodeTitulo12->nodeArtista12
+nodeTitulo12->nodeCountry12
+nodeTitulo12->nodeCompany12
+nodeTitulo12->nodePrice12
+nodeTitulo12->nodeYear12
+nodeTitulo13[label="Title:big willie style"]
+nodeArtista13[label="Artista:jonh lennon"]
+nodeCountry13[label="Country:usa"]
+nodeCompany13[label="Company:columbia"]
+nodePrice13[label="Price:9.90"]
+nodeYear13[label="Year:1997"]
+"catalogo"->"cd13"
+cd13->nodeTitulo13
+nodeTitulo13->nodeArtista13
+nodeTitulo13->nodeCountry13
+nodeTitulo13->nodeCompany13
+nodeTitulo13->nodePrice13
+nodeTitulo13->nodeYear13
+nodeTitulo14[label="Title:tupelo honey"]
+nodeArtista14[label="Artista:van morrison"]
+nodeCountry14[label="Country:uk"]
+nodeCompany14[label="Company:polydor"]
+nodePrice14[label="Price:8.20"]
+nodeYear14[label="Year:1971"]
+"catalogo"->"cd14"
+cd14->nodeTitulo14
+nodeTitulo14->nodeArtista14
+nodeTitulo14->nodeCountry14
+nodeTitulo14->nodeCompany14
+nodeTitulo14->nodePrice14
+nodeTitulo14->nodeYear14
+nodeTitulo15[label="Title:soulsville"]
+nodeArtista15[label="Artista:jorn hoel"]
+nodeCountry15[label="Country:norway"]
+nodeCompany15[label="Company:wea"]
+nodePrice15[label="Price:7.90"]
+nodeYear15[label="Year:1996"]
+"catalogo"->"cd15"
+cd15->nodeTitulo15
+nodeTitulo15->nodeArtista15
+nodeTitulo15->nodeCountry15
+nodeTitulo15->nodeCompany15
+nodeTitulo15->nodePrice15
+nodeTitulo15->nodeYear15
+nodeTitulo16[label="Title:the very best of"]
+nodeArtista16[label="Artista:cat stevens"]
+nodeCountry16[label="Country:uk"]
+nodeCompany16[label="Company:island"]
+nodePrice16[label="Price:8.90"]
+nodeYear16[label="Year:1990"]
+"catalogo"->"cd16"
+cd16->nodeTitulo16
+nodeTitulo16->nodeArtista16
+nodeTitulo16->nodeCountry16
+nodeTitulo16->nodeCompany16
+nodeTitulo16->nodePrice16
+nodeTitulo16->nodeYear16
+nodeTitulo17[label="Title:stop"]
+nodeArtista17[label="Artista:sam brown"]
+nodeCountry17[label="Country:uk"]
+nodeCompany17[label="Company:a and m"]
+nodePrice17[label="Price:8.90"]
+nodeYear17[label="Year:1988"]
+"catalogo"->"cd17"
+cd17->nodeTitulo17
+nodeTitulo17->nodeArtista17
+nodeTitulo17->nodeCountry17
+nodeTitulo17->nodeCompany17
+nodeTitulo17->nodePrice17
+nodeTitulo17->nodeYear17
+nodeTitulo18[label="Title:bridge of spies"]
+nodeArtista18[label="Artista:t'pau"]
+nodeCountry18[label="Country:uk"]
+nodeCompany18[label="Company:siren"]
+nodePrice18[label="Price:7.90"]
+nodeYear18[label="Year:1987"]
+"catalogo"->"cd18"
+cd18->nodeTitulo18
+nodeTitulo18->nodeArtista18
+nodeTitulo18->nodeCountry18
+nodeTitulo18->nodeCompany18
+nodeTitulo18->nodePrice18
+nodeTitulo18->nodeYear18
+nodeTitulo19[label="Title:private dancer"]
+nodeArtista19[label="Artista:tina turner"]
+nodeCountry19[label="Country:uk"]
+nodeCompany19[label="Company:capitol"]
+nodePrice19[label="Price:8.90"]
+nodeYear19[label="Year:1983"]
+"catalogo"->"cd19"
+cd19->nodeTitulo19
+nodeTitulo19->nodeArtista19
+nodeTitulo19->nodeCountry19
+nodeTitulo19->nodeCompany19
+nodeTitulo19->nodePrice19
+nodeTitulo19->nodeYear19
+nodeTitulo20[label="Title:midt om natten"]
+nodeArtista20[label="Artista:kim larsen"]
+nodeCountry20[label="Country:eu"]
+nodeCompany20[label="Company:medley"]
+nodePrice20[label="Price:7.80"]
+nodeYear20[label="Year:1983"]
+"catalogo"->"cd20"
+cd20->nodeTitulo20
+nodeTitulo20->nodeArtista20
+nodeTitulo20->nodeCountry20
+nodeTitulo20->nodeCompany20
+nodeTitulo20->nodePrice20
+nodeTitulo20->nodeYear20
+nodeTitulo21[label="Title:pavarotti gala concert"]
+nodeArtista21[label="Artista:luciano pavarotti"]
+nodeCountry21[label="Country:uk"]
+nodeCompany21[label="Company:decca"]
+nodePrice21[label="Price:9.90"]
+nodeYear21[label="Year:1991"]
+"catalogo"->"cd21"
+cd21->nodeTitulo21
+nodeTitulo21->nodeArtista21
+nodeTitulo21->nodeCountry21
+nodeTitulo21->nodeCompany21
+nodeTitulo21->nodePrice21
+nodeTitulo21->nodeYear21
+nodeTitulo22[label="Title:the dock of the bay"]
+nodeArtista22[label="Artista:otis redding"]
+nodeCountry22[label="Country:usa"]
+nodeCompany22[label="Company:stax records"]
+nodePrice22[label="Price:7.90"]
+nodeYear22[label="Year:1968"]
+"catalogo"->"cd22"
+cd22->nodeTitulo22
+nodeTitulo22->nodeArtista22
+nodeTitulo22->nodeCountry22
+nodeTitulo22->nodeCompany22
+nodeTitulo22->nodePrice22
+nodeTitulo22->nodeYear22
+nodeTitulo23[label="Title:picture book"]
+nodeArtista23[label="Artista:simply red"]
+nodeCountry23[label="Country:eu"]
+nodeCompany23[label="Company:elektra"]
+nodePrice23[label="Price:7.20"]
+nodeYear23[label="Year:1985"]
+"catalogo"->"cd23"
+cd23->nodeTitulo23
+nodeTitulo23->nodeArtista23
+nodeTitulo23->nodeCountry23
+nodeTitulo23->nodeCompany23
+nodeTitulo23->nodePrice23
+nodeTitulo23->nodeYear23
+}

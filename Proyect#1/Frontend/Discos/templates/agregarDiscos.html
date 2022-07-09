@@ -1,0 +1,100 @@
+{% extends 'base2.html' %}
+{% block content %}
+{% load static %}
+<div class="container mt-5" style="display: flex; flex-direction: row;">
+    <div class="card mt-3" style="margin-left: 5rem;">
+        <div class="card-body">
+            <div class="card-title h3"style="display: flex; align-items:center;justify-content: center; width: 22rem;">Agregar Disco</div>
+            <div class="card-text">
+                <form action="/peticion_Agregar_Disco/" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Titulo</label>
+                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Artista</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="artist">
+                      </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label" >Compañía</label>
+                      <input type="text" class="form-control" id="exampleInputPassword1" name="company">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">País</label>
+                        <input type="text" class="form-control" id="exampleInputPassword1" name="country">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Precio</label>
+                        <input type="number" class="form-control" id="exampleInputPassword1" name="price" min="0">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Año</label>
+                        <input type="number" class="form-control" id="exampleInputPassword1" name="year" min="0">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+    <div class="card" style="margin-left: 5rem; height: 35rem;">
+        <div class="card-body">
+            <div class="card-title h3" style="display: flex; align-items:center;justify-content: center;">Discos Existentes</div>
+            <div class="card-text" id="rmTabla">
+                <table class="table" id="tabla">
+                    <thead class="table-dark">
+                      <tr>
+                        <th>Artista</th>
+                        <th>Compañía</th>
+                        <th>País</th>
+                        <th>Precio</th>
+                        <th>Año</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tabla_body">
+
+                    </tbody>
+                </table> 
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let tabla = document.getElementById('tabla_body');
+    let discos_Existentes ={{discos_Existentes | safe}};
+    let men = {{nota | safe}};
+    if(discos_Existentes.length>0){
+        discos_Existentes.forEach((element,index,discos_Existentes) => {
+            let row = tabla.insertRow();
+            row.innerHTML=`
+                    <tr>
+                        <th>${element['artist']}</th>
+                        <th>${element['company']}</th>
+                        <th>${element['country']}</th>
+                        <th>${element['price']}</th>
+                        <th>${element['year']}</th>
+                    </tr>
+            `;
+        });
+    }else{
+        tabla.innerHTML=`<img src="{% static 'busqueda.png' %}" id="imgBuscar">`;
+
+    }
+    if(men['mensaje']!= 'no'){
+        if (men['mensaje']!= 'Error'){
+            Swal.fire(
+                    'Resultados',
+                    men['mensaje'],
+                    'success'
+                );
+        }else{
+            Swal.fire(
+                'Resultados',
+                "Error, Disco no Agregado",
+                'error'
+                );
+        }
+    }
+
+</script>
+{% endblock %}

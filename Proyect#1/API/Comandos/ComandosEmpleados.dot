@@ -1,0 +1,87 @@
+digraph G {
+charset="latin1"
+node [shape=square,style="rounded"];
+rankdir="LR";
+empresa->"Contabilidad"
+nodeNombre1[label="Nombre:José Ernesto"]
+nodePuesto1[label="Puesto:Gerente general"]
+nodeSalario1[label="Salario:4000.00"]
+"Contabilidad"->Empleado1
+"Empleado1"->nodeNombre1
+"Empleado1"->nodePuesto1
+"Empleado1"->nodeSalario1
+nodeNombre2[label="Nombre:Daniel Pérez"]
+nodePuesto2[label="Puesto:Contador"]
+nodeSalario2[label="Salario:2000.00"]
+"Contabilidad"->Empleado2
+"Empleado2"->nodeNombre2
+"Empleado2"->nodePuesto2
+"Empleado2"->nodeSalario2
+empresa->"RRHH"
+nodeNombre3[label="Nombre:Marta Torres"]
+nodePuesto3[label="Puesto:Reclutadora"]
+nodeSalario3[label="Salario:3000.00"]
+"RRHH"->Empleado3
+"Empleado3"->nodeNombre3
+"Empleado3"->nodePuesto3
+"Empleado3"->nodeSalario3
+empresa->"Ventas"
+nodeNombre4[label="Nombre:Julio Gomez"]
+nodePuesto4[label="Puesto:Vendedor"]
+nodeSalario4[label="Salario:4000.00"]
+"Ventas"->Empleado4
+"Empleado4"->nodeNombre4
+"Empleado4"->nodePuesto4
+"Empleado4"->nodeSalario4
+nodeNombre5[label="Nombre:Mario Guerra"]
+nodePuesto5[label="Puesto:Vendedor"]
+nodeSalario5[label="Salario:4000.00"]
+"Ventas"->Empleado5
+"Empleado5"->nodeNombre5
+"Empleado5"->nodePuesto5
+"Empleado5"->nodeSalario5
+nodeNombre6[label="Nombre:Erick Vasquez"]
+nodePuesto6[label="Puesto:Jefe de vendedores"]
+nodeSalario6[label="Salario:7000.00"]
+"Ventas"->Empleado6
+"Empleado6"->nodeNombre6
+"Empleado6"->nodePuesto6
+"Empleado6"->nodeSalario6
+empresa->"Caja"
+nodeNombre7[label="Nombre:Fernando Murcia"]
+nodePuesto7[label="Puesto:Cajero"]
+nodeSalario7[label="Salario:5000.00"]
+"Caja"->Empleado7
+"Empleado7"->nodeNombre7
+"Empleado7"->nodePuesto7
+"Empleado7"->nodeSalario7
+nodeNombre8[label="Nombre:Emanuel Pineda"]
+nodePuesto8[label="Puesto:Cajero"]
+nodeSalario8[label="Salario:4500.00"]
+"Caja"->Empleado8
+"Empleado8"->nodeNombre8
+"Empleado8"->nodePuesto8
+"Empleado8"->nodeSalario8
+empresa->"Informatica"
+nodeNombre9[label="Nombre:Christian Falla"]
+nodePuesto9[label="Puesto:Desarrollador"]
+nodeSalario9[label="Salario:7000.00"]
+"Informatica"->Empleado9
+"Empleado9"->nodeNombre9
+"Empleado9"->nodePuesto9
+"Empleado9"->nodeSalario9
+nodeNombre10[label="Nombre:Pablo Cesar"]
+nodePuesto10[label="Puesto:DBA"]
+nodeSalario10[label="Salario:6000.00"]
+"Informatica"->Empleado10
+"Empleado10"->nodeNombre10
+"Empleado10"->nodePuesto10
+"Empleado10"->nodeSalario10
+nodeNombre11[label="Nombre:Edvin Castro"]
+nodePuesto11[label="Puesto:Tecnico"]
+nodeSalario11[label="Salario:5000.00"]
+"Informatica"->Empleado11
+"Empleado11"->nodeNombre11
+"Empleado11"->nodePuesto11
+"Empleado11"->nodeSalario11
+}

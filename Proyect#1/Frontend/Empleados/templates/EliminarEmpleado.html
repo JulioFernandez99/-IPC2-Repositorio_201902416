@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title display-5" style="display: flex; align-items:center;justify-content: center;">
+                Eliminar Empleados</div>
+            <div class="card-text" id="rmTabla">
+                <table class="table" id="tabla">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Departamento</th>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Puesto</th>
+                            <th>Salario</th>
+                            <th><img src="{% static 'bote-de-basura.png' %}" alt=""
+                                    style="height: 1.5rem;width: 1.5rem;"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla_body">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/eliminandoEmpleado/" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Departamento</label>
+                        <input type="text" class="form-control" id="depto_Modal" aria-describedby="emailHelp" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">ID</label>
+                        <input type="number" class="form-control" id="id_Modal" name="id" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre_Modal" name="nombre" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Puesto</label>
+                        <input type="text" class="form-control" id="puesto_Modal" name="puesto" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Salario</label>
+                        <input type="number" class="form-control" id="salario_Modal" name="salario" readonly>
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Confirmar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let departamentos = {{ departamentos | safe}};
+    let empleados = {{ empleados | safe}};
+
+    let tabla = document.getElementById('tabla_body');
+    let men = {{ men | safe}};
+    departamentos.forEach((elemento, index, departamentos) => {
+        let empleado = empleados[index];
+        empleado.forEach((element, interador, empleado) => {
+            let row = tabla.insertRow();
+            row.setAttribute('id', elemento + `_${interador}`);
+            row.innerHTML = `
+            <tr>
+            <td>${elemento}</td>
+            <td>${element['id']}</td>
+            <td>${element['nombre']}</td>
+            <td>${element['puesto']}</td>
+            <td>${element['salario']}</td>
+            <td></td>
+            </tr>
+            `;
+            let buttonEdit = document.createElement('button');
+            buttonEdit.setAttribute('class', 'btn btn-primary');
+            buttonEdit.setAttribute('data-bs-toggle', 'modal');
+            buttonEdit.setAttribute('data-bs-target', '#exampleModal');
+            buttonEdit.innerHTML = `<img src="{% static 'bote-de-basura.png' %}" alt="" style="height: 1.5rem;">`;
+            buttonEdit.onclick = (e) => {
+                id = row.getAttribute('id');
+                verEmpleado(id);
+            };
+            row.children[5].appendChild(buttonEdit);
+        });
+    });
+    if (men['mensaje'] != 'no') {
+        if (men['mensaje'] == "Empleado eliminado con exito") {
+            Swal.fire(
+                'Resultados',
+                men['mensaje'],
+                'success'
+            )
+        } else {
+            Swal.fire(
+                'Resultados',
+                men['mensaje'],
+                'error'
+            )
+        }
+    };
+    function verEmpleado(id) {
+        let row_Created = document.getElementById(id);
+        let myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+        let depto_Modal = document.getElementById('depto_Modal');
+        let id_Modal = document.getElementById('id_Modal');
+        let nombre_Modal = document.getElementById('nombre_Modal');
+        let puesto_Modal = document.getElementById('puesto_Modal');
+        let salario_Modal = document.getElementById('salario_Modal');
+        depto_Modal.setAttribute('value', row_Created.children[0].textContent);
+        id_Modal.setAttribute('value', row_Created.children[1].textContent);
+        nombre_Modal.setAttribute('value', row_Created.children[2].textContent);
+        puesto_Modal.setAttribute('value', row_Created.children[3].textContent);
+        salario_Modal.setAttribute('value', row_Created.children[4].textContent);
+    };
+</script>
+
+{% endblock %}

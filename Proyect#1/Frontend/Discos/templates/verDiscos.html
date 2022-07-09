@@ -1,0 +1,61 @@
+{% extends 'base2.html' %}
+{% block content %}
+{% load static %}
+<div>
+    <div class="display-6" style="display: flex;align-items: center;justify-content:center;margin: 5vh; border-bottom: 0.1vh solid;">
+        Lista de los Discos Existentes
+    </div>
+    <div id="insertar">
+
+    </div>
+</div>
+<script>
+    let divInsertar= document.getElementById('insertar');
+    let discos = {{discos | safe}};
+
+    if(discos.length>0){
+        let divTabla = document.createElement("div");
+    divTabla.style = 'margin: 3%;display:flex;align-items: center;justify-content: center;flex-direction:column;';
+    divTabla.className ="card text-dark bg-light mb-7";
+    let divT2 = document.createElement('div');
+    divT2.className = 'card-body col-md-8';
+    let table = document.createElement('table');
+    table.className = 'table';
+    let thead = document.createElement('thead');
+    thead.className='table-dark ';
+    let tbody = document.createElement('tbody');
+    let head_Atributo = document.createElement('tr')
+
+    thead.innerHTML=`
+        <tr>
+            <th>Titulo</th>
+            <th>Artista</th>
+            <th>Compañía</th>
+            <th>País</th>
+            <th>Precio</th>
+            <th>Año</th>
+        </tr>
+    `;
+    discos.forEach((element,index,discos) => {
+        let row = tbody.insertRow();
+        row.innerHTML=`
+            <tr>
+                <td>${element['title']}</td>
+                <td>${element['artist']}</td>
+                <td>${element['company']}</td>
+                <td>${element['country']}</td>
+                <td>${element['price']}</td>
+                <td>${element['year']}</td>
+            </tr>
+        `;
+    });
+    table.appendChild(thead);
+    table.appendChild(tbody);
+    divT2.appendChild(table);
+    divTabla.appendChild(divT2);
+    divInsertar.appendChild(divTabla);
+    }else{
+        Swal.fire('Respuesta','No se encontraron Discos','error')
+    }
+</script>
+{% endblock %}

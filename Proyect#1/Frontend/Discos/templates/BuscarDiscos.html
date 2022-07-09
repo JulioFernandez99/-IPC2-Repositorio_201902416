@@ -1,0 +1,240 @@
+{% extends 'base2.html' %}
+{% block content %}
+{% load static %}
+<div class="container mt-5" style="display: flex;align-items:center;justify-content:center;">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+                <div class="d-flex align-items-start">
+                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                      <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Titulo</button>
+                      <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Año</button>
+                      <button class="nav-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Artista</button>
+                    </div>
+                    <div class="tab-content" id="v-pills-tabContent">
+                      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                            <form action="/peticion_Buscar_Titulo/" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Ingrese Titulo</label>
+                                    <input type="text" class="form-control" id="nombre" aria-describedby="emailHelp" name="title">
+                                    <div id="emailHelp" class="form-text">Debe Ingresar un Titulo para realizar la busqueda, sin numeros ni caracteres especiales</div>
+                                    <div style="display: flex;align-items:center;justify-content: center;">
+                                        <button type="submit" class="btn btn-dark mt-2">Buscar</button>
+                                    </div>
+                                </div>
+                            </form>
+                      </div>
+                      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <form action="/peticion_Buscar_Year/" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Ingrese Año</label>
+                                <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="year">
+                                <div id="emailHelp" class="form-text">Debe Ingresar un Departamento para realizar la busqueda Correcta</div>
+                                <div style="display: flex;align-items:center;justify-content: center;">
+                                    <button type="submit" class="btn btn-dark mt-2">Buscar</button>
+                                </div>
+                            </div>
+                        </form>
+                      </div>
+                      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                        <form action="/peticion_Buscar_Artista/" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Ingrese Artista</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="artist" >
+                                <div id="emailHelp" class="form-text">Debe Ingresar un Artista para realizar la busqueda Correcta sobre Discos</div>
+                                <div style="display: flex;align-items:center;justify-content: center;">
+                                    <button type="submit" class="btn btn-dark mt-2">Buscar</button>
+                                </div>
+                            </div>
+                        </form>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col"style="display:flex; align-items:center;justify-content: center; width: 35rem;" id="insertar">
+              <img src="{% static 'busqueda.png' %}" id="imgBuscar">
+        </div>
+    </div>
+</div>
+<script>
+    let tipo_Consulta = {{type | safe}};
+    let disco_titulo = {{disco_titulo | safe}};
+    let discos_year = {{discos_year | safe}};
+    let discos_artist = {{disocs_artist | safe}};
+
+    if(tipo_Consulta['tipo_consulta']=="titulo"){
+        buscar_Titulo();
+    };
+    if(tipo_Consulta['tipo_consulta']=="year"){
+        buscar_Year();
+    };
+    if(tipo_Consulta['tipo_consulta']=="artista"){
+        buscar_Artista()
+    };
+    function buscar_Titulo(){
+        let largo_Discos = Object.keys(disco_titulo).length
+        if(largo_Discos>0){
+            let div_Insertar = document.getElementById('insertar');
+            let img_Rm = document.getElementById('imgBuscar');
+            div_Insertar.removeChild(img_Rm);
+            
+            let div_Card = document.createElement('div');
+            div_Card.className = 'card';
+
+            let div_Card_Title = document.createElement('div');
+            div_Card_Title.className = 'card-title h5 fw-bolder';
+            div_Card_Title.style = 'text-align: center; '
+            div_Card_Title.innerText = `Resultados de la busqueda Por Titulo`;
+            let div_Card_Body = document.createElement('div');
+            div_Card_Body.className = 'card-body';
+            
+            let table = document.createElement('table');
+            table.className = 'table';
+            let thead = document.createElement('thead');
+            thead.className='table-dark ';
+            let tbody = document.createElement('tbody');
+            tbody.className='h6 text-muted';
+            thead.innerHTML = `
+            <tr>
+                <th>Artista</th>
+                <th>Compañía</th>
+                <th>País</th>
+                <th>Precio</th>
+                <th>Año</th>
+            </tr>
+            `;
+            tbody.innerHTML=`
+            <tr>
+                <th>${disco_titulo['artist']}</th>
+                <th>${disco_titulo['company']}</th>
+                <th>${disco_titulo['country']}</th>
+                <th>${disco_titulo['price']}</th>
+                <th>${disco_titulo['year']}</th>
+            </tr>
+            `;
+            table.appendChild(thead);
+            table.appendChild(tbody);
+            div_Card_Body.appendChild(div_Card_Title)
+            div_Card_Body.appendChild(table);
+            div_Card.appendChild(div_Card_Body);
+            div_Insertar.appendChild(div_Card);
+        }else{
+            Swal.fire('Respuesta','No se encontraron valores con ese Titulo','error')
+        }
+    }
+
+    function buscar_Year(){
+        if(discos_year.length >0){
+            let div_Insertar = document.getElementById('insertar');
+            let img_Rm = document.getElementById('imgBuscar');
+            div_Insertar.removeChild(img_Rm);
+            
+            let div_Card = document.createElement('div');
+            div_Card.className = 'card';
+
+            let div_Card_Title = document.createElement('div');
+            div_Card_Title.className = 'card-title h5 fw-bolder';
+            div_Card_Title.style = 'text-align: center; '
+            div_Card_Title.innerText = `Resultados de la busqueda Por Titulo`;
+            let div_Card_Body = document.createElement('div');
+            div_Card_Body.className = 'card-body';
+            
+            let table = document.createElement('table');
+            table.className = 'table';
+            let thead = document.createElement('thead');
+            thead.className='table-dark ';
+            let tbody = document.createElement('tbody');
+            tbody.className='h6 text-muted';
+            thead.innerHTML = `
+            <tr>
+                <th>Artista</th>
+                <th>Compañía</th>
+                <th>País</th>
+                <th>Precio</th>
+                <th>Año</th>
+            </tr>
+            `;
+            discos_year.forEach((element,index,discos_year) => {
+                let row = tbody.insertRow();
+                row.innerHTML=`
+                    <tr>
+                        <th>${element['artist']}</th>
+                        <th>${element['company']}</th>
+                        <th>${element['country']}</th>
+                        <th>${element['price']}</th>
+                        <th>${element['year']}</th>
+                    </tr>
+                `;
+            });
+            table.appendChild(thead);
+            table.appendChild(tbody);
+            div_Card_Body.appendChild(div_Card_Title)
+            div_Card_Body.appendChild(table);
+            div_Card.appendChild(div_Card_Body);
+            div_Insertar.appendChild(div_Card);
+
+        }else{
+            Swal.fire('Respuesta','No se encontraron valores con ese Año','error')
+        }
+    }
+    function buscar_Artista(){
+        if(discos_artist.length>0){
+            let div_Insertar = document.getElementById('insertar');
+            let img_Rm = document.getElementById('imgBuscar');
+            div_Insertar.removeChild(img_Rm);
+            
+            let div_Card = document.createElement('div');
+            div_Card.className = 'card';
+
+            let div_Card_Title = document.createElement('div');
+            div_Card_Title.className = 'card-title h5 fw-bolder';
+            div_Card_Title.style = 'text-align: center; '
+            div_Card_Title.innerText = `Resultados de la busqueda Por Titulo`;
+            let div_Card_Body = document.createElement('div');
+            div_Card_Body.className = 'card-body';
+            
+            let table = document.createElement('table');
+            table.className = 'table';
+            let thead = document.createElement('thead');
+            thead.className='table-dark ';
+            let tbody = document.createElement('tbody');
+            tbody.className='h6 text-muted';
+            thead.innerHTML = `
+            <tr>
+                <th>Artista</th>
+                <th>Compañía</th>
+                <th>País</th>
+                <th>Precio</th>
+                <th>Año</th>
+            </tr>
+            `;
+            discos_artist.forEach((element,index,discos_artist)=>{
+                let row = tbody.insertRow();
+                row.innerHTML=`
+                    <tr>
+                        <th>${element['artist']}</th>
+                        <th>${element['company']}</th>
+                        <th>${element['country']}</th>
+                        <th>${element['price']}</th>
+                        <th>${element['year']}</th>
+                    </tr>
+                `;
+            });
+            table.appendChild(thead);
+            table.appendChild(tbody);
+            div_Card_Body.appendChild(div_Card_Title)
+            div_Card_Body.appendChild(table);
+            div_Card.appendChild(div_Card_Body);
+            div_Insertar.appendChild(div_Card);
+        }else{
+            Swal.fire('Respuesta','No se encontraron valores con ese Artista','error')
+        };
+    }
+</script>
+{% endblock %}

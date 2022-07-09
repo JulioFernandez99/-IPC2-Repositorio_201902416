@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="container mt-5" style="display: flex; flex-direction: row;">
+    <div class="card mt-3" style="margin-left: 5rem;">
+        <div class="card-body">
+            <div class="card-title h3"style="display: flex; align-items:center;justify-content: center; width: 22rem;">Agregar Empleado</div>
+            <div class="card-text">
+                <form action="/agregandoEmpleado/" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Departamento</label>
+                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="departamento">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">ID</label>
+                        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="id">
+                      </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label" >Nombre</label>
+                      <input type="text" class="form-control" id="exampleInputPassword1" name="nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Puesto</label>
+                        <input type="text" class="form-control" id="exampleInputPassword1" name="puesto">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Salario</label>
+                        <input type="number" class="form-control" id="exampleInputPassword1" name="salario">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+    <div class="card" style="margin-left: 5rem; height: 35rem;">
+        <div class="card-body">
+            <div class="card-title h3" style="display: flex; align-items:center;justify-content: center;">Empleados Existentes</div>
+            <div class="card-text" id="rmTabla">
+                <table class="table" id="tabla">
+                    <thead class="table-dark">
+                      <tr>
+                        <th>Departamento</th>
+                        <th>Nombre</th>
+                        <th>Puesto</th>
+                        <th>Salario</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tabla_body">
+
+                    </tbody>
+                </table> 
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let departamentos = {{departamentos | safe}};
+    let empleados = {{empleados | safe}};
+    let respuesta = {{res | safe}};
+    
+    if(departamentos.length > 0){
+        let tabla_body = document.getElementById("tabla_body");
+        departamentos.forEach((element,index,departamentos) => {
+            let empleado = empleados[index];
+            empleado.forEach((xelement,inter,empleado)=>{
+                let row = tabla_body.insertRow();
+                row.innerHTML=`
+                    <tr>
+                        <td>${element}</td>
+                        <td>${xelement['nombre']}</td>
+                        <td>${xelement['puesto']}</td>
+                        <td>${xelement['salario']}</td>
+                    </tr>
+            `;
+            });
+        });
+        if (respuesta['mensaje']!= "no"){
+            if(respuesta['mensaje']== "Empelado agregado con exito"){
+                Swal.fire(
+                    'Resultados',
+                    respuesta['mensaje'],
+                    'success'
+                )
+            }else{
+                Swal.fire(
+                'Resultados',
+                respuesta['mensaje'],
+                'error'
+                )
+            }
+        }
+    }else{
+        let rmTabla = document.getElementById('rmTabla');
+        let tabla = document.getElementById('tabla');
+        let img = document.createElement('img');
+        img.src="{% static 'busqueda.png' %}"
+        rmTabla.removeChild(tabla);
+        rmTabla.appendChild(img);      
+    }
+</script>
+{% endblock %}

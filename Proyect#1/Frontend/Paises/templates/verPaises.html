@@ -1,0 +1,76 @@
+{% extends 'basePaises.html' %}
+{% block content %}
+{% load static %}
+<div>
+    <div class="display-6" style="display: flex;align-items: center;justify-content:center;margin: 5vh; border-bottom: 0.1vh solid;">
+        Lista de los Países Existentes
+    </div>
+    <div id="insertar">
+
+    </div>
+</div>
+<script>
+    let divInsertar= document.getElementById('insertar');
+    let continente = {{continentes | safe}};
+    let paises = {{paises | safe}};
+    if(continente.length>0){
+        insertar();
+    }else{
+        divInsertar.style = 'display:flex;align-items: center;justify-content: center;'
+            Swal.fire(
+                'Resultados',
+                'No se encontraron Empleados',
+                'error'
+            )
+            let label = document.createElement("label");
+            label.innerText =`De Momento no se encuentran Países disponibles`;
+            label.className = 'h3 mt-3';
+            divInsertar.appendChild(label)
+    };
+    function insertar(){
+        continente.forEach((element,index,continente) => {
+            let divTabla = document.createElement("div");
+                divTabla.style = 'margin: 7%;display:flex;align-items: center;justify-content: center;flex-direction:column;';
+                divTabla.className ="card text-dark bg-light mb-7";
+                let divT2 = document.createElement('div');
+                divT2.className = 'card-body col-md-8'
+                let titulo_Div = document.createElement('label');
+                titulo_Div.innerText =`Continente ${element}`
+                titulo_Div.className = 'h3 mt-3';
+                let table = document.createElement('table');
+                table.className = 'table';
+                let thead = document.createElement('thead');
+                thead.className='table-dark ';
+                let tbody = document.createElement('tbody');
+                let head_Atributo = document.createElement('tr')
+                thead.innerHTML=`
+                    <tr>
+                        <td>País</td>
+                        <td>Capital</td>
+                        <td>Idioma</td>
+                        <td>Moneda</td>
+                    </tr>
+                `;
+                let pais_Elegido = paises[index];
+                pais_Elegido.forEach((xelement2,iterador2,xelement)=>{
+                        let row = tbody.insertRow();
+                        row.innerHTML=`
+                        <tr>
+                            <td>${xelement2['pais']}</td>
+                            <td>${xelement2['capital']}</td>
+                            <td>${xelement2['idioma']}</td>
+                            <td>${xelement2['moneda']}</td>
+                        </tr>
+                        `;
+                    });
+                table.appendChild(thead);
+                table.appendChild(tbody);
+                divTabla.appendChild(titulo_Div);
+                divT2.appendChild(table);
+                divTabla.appendChild(divT2);
+                divInsertar.appendChild(divTabla);
+        });
+
+    }
+</script>
+{% endblock %}

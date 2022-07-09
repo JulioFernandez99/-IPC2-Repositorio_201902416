@@ -1,0 +1,89 @@
+digraph G {
+charset="latin1"
+node [shape=square,style="rounded"];
+rankdir="LR";
+mundo->"Europa"
+nodeMoneda1[label="Moneda:Euro"]
+nodeNombre1[label="Nombre:Monaco"]
+nodeCapital1[label="Capital:Ciudad de monaco"]
+nodeIdioma1[label="Idioma:Frances"]
+"Europa"->pais1
+"pais1"->nodeNombre1
+"pais1"->nodeCapital1
+"pais1"->nodeIdioma1
+"pais1"->nodeMoneda1
+nodeMoneda2[label="Moneda:Euro"]
+nodeNombre2[label="Nombre:Australia"]
+nodeCapital2[label="Capital:Viena"]
+nodeIdioma2[label="Idioma:Español"]
+"Europa"->pais2
+"pais2"->nodeNombre2
+"pais2"->nodeCapital2
+"pais2"->nodeIdioma2
+"pais2"->nodeMoneda2
+mundo->"America"
+nodeMoneda3[label="Moneda:Aquetzal"]
+nodeNombre3[label="Nombre:Guatemala"]
+nodeCapital3[label="Capital:Ciudad de guatemala"]
+nodeIdioma3[label="Idioma:Españolssss"]
+"America"->pais3
+"pais3"->nodeNombre3
+"pais3"->nodeCapital3
+"pais3"->nodeIdioma3
+"pais3"->nodeMoneda3
+nodeMoneda4[label="Moneda:Peso"]
+nodeNombre4[label="Nombre:Mexico"]
+nodeCapital4[label="Capital:Ciudad de mexico"]
+nodeIdioma4[label="Idioma:Español"]
+"America"->pais4
+"pais4"->nodeNombre4
+"pais4"->nodeCapital4
+"pais4"->nodeIdioma4
+"pais4"->nodeMoneda4
+nodeMoneda5[label="Moneda:Dolar"]
+nodeNombre5[label="Nombre:Salvador"]
+nodeCapital5[label="Capital:San salvador"]
+nodeIdioma5[label="Idioma:Espa"]
+"America"->pais5
+"pais5"->nodeNombre5
+"pais5"->nodeCapital5
+"pais5"->nodeIdioma5
+"pais5"->nodeMoneda5
+nodeMoneda6[label="Moneda:Cordoba"]
+nodeNombre6[label="Nombre:Nicaragua"]
+nodeCapital6[label="Capital:Managua"]
+nodeIdioma6[label="Idioma:Español"]
+"America"->pais6
+"pais6"->nodeNombre6
+"pais6"->nodeCapital6
+"pais6"->nodeIdioma6
+"pais6"->nodeMoneda6
+nodeMoneda7[label="Moneda:Sol"]
+nodeNombre7[label="Nombre:Honduras"]
+nodeCapital7[label="Capital:Tegusigalpa"]
+nodeIdioma7[label="Idioma:Catalan"]
+"America"->pais7
+"pais7"->nodeNombre7
+"pais7"->nodeCapital7
+"pais7"->nodeIdioma7
+"pais7"->nodeMoneda7
+mundo->"Asia"
+nodeMoneda8[label="Moneda:Euro"]
+nodeNombre8[label="Nombre:china"]
+nodeCapital8[label="Capital:Ciudad de monaco"]
+nodeIdioma8[label="Idioma:Frances"]
+"Asia"->pais8
+"pais8"->nodeNombre8
+"pais8"->nodeCapital8
+"pais8"->nodeIdioma8
+"pais8"->nodeMoneda8
+nodeMoneda9[label="Moneda:Won"]
+nodeNombre9[label="Nombre:Korea del norte"]
+nodeCapital9[label="Capital:Piongyan"]
+nodeIdioma9[label="Idioma:Koreano"]
+"Asia"->pais9
+"pais9"->nodeNombre9
+"pais9"->nodeCapital9
+"pais9"->nodeIdioma9
+"pais9"->nodeMoneda9
+}

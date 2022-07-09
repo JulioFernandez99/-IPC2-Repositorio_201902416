@@ -1,0 +1,98 @@
+{% extends 'basePaises.html' %}
+{% block content %}
+{% load static %}
+<div class="container mt-5" style="display: flex; flex-direction: row;">
+    <div class="card mt-3" style="margin-left: 5rem;">
+        <div class="card-body">
+            <div class="card-title h3"style="display: flex; align-items:center;justify-content: center; width: 22rem;">Agregar País</div>
+            <div class="card-text">
+                <form action="/peticio_Agregar_Pais/" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label">Continente</label>
+                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="continente">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">País</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nombre">
+                      </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label" >Moneda</label>
+                      <input type="text" class="form-control" id="exampleInputPassword1" name="moneda">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Capital</label>
+                        <input type="text" class="form-control" id="exampleInputPassword1" name="capital">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Idioma</label>
+                        <input type="text" class="form-control" id="exampleInputPassword1" name="idioma">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                  </form>
+            </div>
+        </div>
+    </div>
+    <div class="card" style="margin-left: 5rem; height: 35rem;">
+        <div class="card-body">
+            <div class="card-title h3" style="display: flex; align-items:center;justify-content: center;">Empleados Existentes</div>
+            <div class="card-text" id="rmTabla">
+                <table class="table" id="tabla">
+                    <thead class="table-dark">
+                      <tr>
+                        <th>Continente</th>
+                        <th>País</th>
+                        <th>Moneda</th>
+                        <th>Capital</th>
+                        <th>Idioma</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tabla_body">
+
+                    </tbody>
+                </table> 
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let continentes = {{continentes | safe}};
+    let paises = {{paises| safe}};
+    let men = {{men | safe}};
+    let tabla = document.getElementById('tabla_body');
+    if(continentes.length>0){
+        continentes.forEach((element,index) => {
+            let pais = paises[index];
+            pais.forEach(elementX =>{
+                let row = tabla.insertRow();
+                row.innerHTML = `
+                <tr>
+                    <td>${element}</td>
+                    <td>${elementX['pais']}</td>
+                    <td>${elementX['moneda']}</td>
+                    <td>${elementX['capital']}</td>
+                    <td>${elementX['idioma']}</td>
+                </tr>
+                `;
+            })
+        });
+
+    };
+    if(men['mensaje']!= 'no'){
+        if(men['mensaje']=='Error Al guardar'){
+            Swal.fire(
+                    'Resultados',
+                    'Error Al guardar',
+                    'success'
+                )
+        }else{
+            Swal.fire(
+                    'Resultados',
+                    men['mensaje'],
+                    'success'
+                )
+        }
+    }
+    
+</script>
+{% endblock %}

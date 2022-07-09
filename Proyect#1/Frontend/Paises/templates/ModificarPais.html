@@ -1,0 +1,131 @@
+{% extends 'basePaises.html' %}
+{% block content %}
+{% load static %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title display-5" style="display: flex; align-items:center;justify-content: center;">Modificar País</div>
+            <div class="card-text" id="rmTabla">
+                <table class="table" id="tabla">
+                    <thead class="table-dark">
+                        <tr>
+                            <td>Continente</td>
+                            <td>País</td>
+                            <td>Capital</td>
+                            <td>Idioma</td>
+                            <td>Moneda</td>
+                            <th><img src="{% static 'editar.png' %}" alt="" style="height: 1.5rem;width: 1.5rem;"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla_body">
+    
+                    </tbody>
+                </table> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modificar Pais</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/peticion_Modificar_Pais/" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Continente</label>
+                        <input type="text" class="form-control" id="continente" aria-describedby="emailHelp" name="continente">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Pais</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Moneda</label>
+                        <input type="text" class="form-control" id="moneda" name="moneda">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Capital</label>
+                        <input type="text" class="form-control" id="capital" name="capital">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Idioma</label>
+                        <input type="text" class="form-control" id="idioma" name="idioma">
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Modificar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let continentes = {{continentes | safe}};
+    let paises = {{paises| safe}};
+    let men = {{men | safe}};
+    let tabla = document.getElementById('tabla_body');
+    if(continentes.length>0){
+        continentes.forEach((element,index) => {
+            let pais = paises[index];
+            pais.forEach((elementX,interator)=>{
+                let row = tabla.insertRow();
+                row.setAttribute('id',`${element}_${interator}`);
+                row.innerHTML = `
+                <tr>
+                    <td>${element}</td>
+                    <td>${elementX['pais']}</td>
+                    <td>${elementX['moneda']}</td>
+                    <td>${elementX['capital']}</td>
+                    <td>${elementX['idioma']}</td>
+                    <td></td>
+                </tr>
+                `;
+                let buttonEdit = document.createElement('button');
+                buttonEdit.setAttribute('class','btn btn-primary');
+                buttonEdit.setAttribute('data-bs-toggle','modal');
+                buttonEdit.setAttribute('data-bs-target','#exampleModal');
+                buttonEdit.innerHTML = `<img src="{% static 'editar.png' %}" alt="" style="height: 1.5rem;">`;
+                buttonEdit.onclick=(e)=>{
+                    id = row.getAttribute('id');
+                    ver_Pais(id);
+                };
+                row.children[5].appendChild(buttonEdit);            
+            });
+            
+        });
+    }
+    if (men['mensaje']!= 'no'){
+        if(men['mensaje']=='Pais modificado con exito'){
+            Swal.fire(
+                'Resultados',
+                men['mensaje'],
+                'success'
+            )
+        }else{
+            Swal.fire(
+                'Resultados',
+                men['mensaje'],
+                'error'
+            )
+        }
+    }
+    function ver_Pais(id){
+        let row_Created = document.getElementById(id);
+        let continente_Modal = document.getElementById('continente');
+        let nombre_Modal = document.getElementById('nombre');
+        let capital_Modal = document.getElementById('capital');
+        let Idioma_Modal = document.getElementById('idioma');
+        let moneda_Modal = document.getElementById('moneda');
+
+        continente_Modal.setAttribute('value',row_Created.children[0].textContent);
+        nombre_Modal.setAttribute('value',row_Created.children[1].textContent);
+        moneda_Modal.setAttribute('value',row_Created.children[2].textContent);
+        capital_Modal.setAttribute('value',row_Created.children[3].textContent);
+        Idioma_Modal.setAttribute('value',row_Created.children[4].textContent);
+    }
+</script>
+{% endblock %}

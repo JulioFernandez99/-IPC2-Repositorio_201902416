@@ -1,0 +1,141 @@
+{% extends 'base2.html' %}
+{% block content %}
+{% load static %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title display-5" style="display: flex; align-items:center;justify-content: center;">Eliminar Discos</div>
+            <div class="card-text" id="rmTabla">
+                <table class="table" id="tabla">
+                    <thead class="table-dark">
+                      <tr>
+                        <th>Titulo</th>
+                        <th>Artista</th>
+                        <th>Compañía</th>
+                        <th>País</th>
+                        <th>Precio</th>
+                        <th>Año</th>
+                        <th><img src="{% static 'bote-de-basura.png' %}" alt=""style="height: 1.5rem;width: 1.5rem;"></th>
+                      </tr>
+                    </thead>
+                    <tbody id="tabla_body">
+
+                    </tbody>
+                </table> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar Disco</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/peticion_Eliminar_Discos/" method="POST" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Titulo</label>
+                        <input type="text" class="form-control" id="titulo" aria-describedby="emailHelp" name="title" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Artista</label>
+                        <input type="text" class="form-control" id="artista" name="artist" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Compañía</label>
+                        <input type="text" class="form-control" id="empresa" name="company"readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">País</label>
+                        <input type="text" class="form-control" id="pais" name="country"readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Precio</label>
+                        <input type="number" class="form-control" id="precio" name="price" min="0"step="any" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Año</label>
+                        <input type="number" class="form-control" id="year" name="year" min="0" step="any" readonly>
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-outline-success">Confirmar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let discos = {{discos | safe}};
+    let men = {{men | safe}}
+    let tabla = document.getElementById('tabla_body');
+    if(discos.length>0){
+        discos.forEach((element,index,discos) => {
+            let row = tabla.insertRow();
+            row.setAttribute('id',index);
+            row.innerHTML =`
+            <tr>
+                <th>${element['title']}</th>
+                <th>${element['artist']}</th>
+                <th>${element['company']}</th>
+                <th>${element['country']}</th>
+                <th>${element['price']}</th>
+                <th>${element['year']}</th>
+                <th></th>
+            </tr>
+            `;
+            let buttonEdit = document.createElement('button');
+            buttonEdit.setAttribute('class','btn btn-primary');
+            buttonEdit.setAttribute('data-bs-toggle','modal');
+            buttonEdit.setAttribute('data-bs-target','#exampleModal');
+            buttonEdit.innerHTML = `<img src="{% static 'editar.png' %}" alt="" style="height: 1.5rem;">`;
+            buttonEdit.onclick=(e)=>{
+                id = row.getAttribute('id');
+                eliminarDiscos(id);
+            };
+            row.children[6].appendChild(buttonEdit);
+        });
+    }else{
+        Swal.fire(
+                'Resultados',
+                "No se encuentran Discos",
+                'error'
+            );
+    }
+    if (men['mensaje']!='no'){
+        if(men['mensaje']!='No existe un disto con este titulo'){
+            Swal.fire(
+                'Resultados',
+                men['mensaje'],
+                'success'
+            )
+        }else{
+            Swal.fire(
+                'Resultados',
+                "Error al Eliminar Modificar el Disco",
+                'error'
+            )
+        }
+    }
+    function eliminarDiscos(id){
+        let row_Created = document.getElementById(id);
+        let title_Modal = document.getElementById('titulo');
+        let artist_Modal = document.getElementById('artista');
+        let company_Modal = document.getElementById('empresa');
+        let country_Modal = document.getElementById('pais');
+        let price_Modal = document.getElementById('precio');
+        let year_Modal = document.getElementById('year');
+
+        title_Modal.setAttribute('value',row_Created.children[0].textContent);
+        artist_Modal.setAttribute('value',row_Created.children[1].textContent);
+        company_Modal.setAttribute('value',row_Created.children[2].textContent);
+        country_Modal.setAttribute('value',row_Created.children[3].textContent);
+        price_Modal.setAttribute('value',row_Created.children[4].textContent);
+        year_Modal.setAttribute('value',row_Created.children[5].textContent);
+    };
+
+</script>
+{% endblock %}

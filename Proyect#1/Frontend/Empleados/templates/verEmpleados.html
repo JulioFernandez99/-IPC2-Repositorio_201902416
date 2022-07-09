@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <div class="display-6" style="display: flex;align-items: center;justify-content:center;margin: 5vh; border-bottom: 0.1vh solid;">
+            Lista de empleados dentro de la Empresa
+        </div>
+        <div id="insertar">
+
+        </div>
+    </div>
+
+    <script>
+        let divInsertar= document.getElementById('insertar');
+        let departamentos = {{departamentos|safe}};
+        let empleados = {{empleados|safe}};
+        let atributos = ['Nombre','Puesto',"Salario"];
+        if(departamentos.length > 0){
+            divInsertar.style = '';
+            insertarElementos();
+        }else{
+            divInsertar.style = 'display:flex;align-items: center;justify-content: center;'
+            Swal.fire(
+                'Resultados',
+                'No se encontraron Empleados',
+                'error'
+            )
+            let label = document.createElement("label");
+            label.innerText =`De Momento no se encuentran Empleados disponibles`;
+            label.className = 'h3 mt-3';
+            divInsertar.appendChild(label)
+        };
+
+        function insertarElementos(){
+            departamentos.forEach((element,index,departamentos) => {
+                let divTabla = document.createElement("div");
+                divTabla.style = 'margin: 7%;display:flex;align-items: center;justify-content: center;flex-direction:column;';
+                divTabla.className ="card text-dark bg-light mb-7";
+                let divT2 = document.createElement('div');
+                divT2.className = 'card-body col-md-8'
+                let titulo_Div = document.createElement('label');
+                titulo_Div.innerText =`Continente ${element}`
+                titulo_Div.className = 'h3 mt-3';
+                let table = document.createElement('table');
+                table.className = 'table';
+                let thead = document.createElement('thead');
+                thead.className='table-dark ';
+                let tbody = document.createElement('tbody');
+                let head_Atributo = document.createElement('tr')
+
+                atributos.forEach((element,index,atributos) => {
+                    let th_Atributo = document.createElement('th');
+                    let text_Tr = document.createTextNode(`${element}`);
+                    th_Atributo.appendChild(text_Tr);
+                    head_Atributo.appendChild(th_Atributo)
+                });
+                thead.appendChild(head_Atributo);
+                let data_Empleados = empleados[index]
+                data_Empleados.forEach((xelement,index,data_Empleados)=>{
+                    let row = tbody.insertRow();
+                    row.innerHTML = `
+                    <td>${xelement['nombre']}</td>
+                    <td>${xelement['puesto']}</td>
+                    <td>${xelement['salario']}</td>
+                    `
+                });
+                table.appendChild(thead);
+                table.appendChild(tbody);
+                divTabla.appendChild(titulo_Div);
+                divT2.appendChild(table);
+                divTabla.appendChild(divT2);
+                divInsertar.appendChild(divTabla);
+            });
+        }
+
+    </script>
+{% endblock %}
